@@ -1,5 +1,5 @@
-// array of possbile words to guess
-var words = ["pacman", "mario", "street fighter", "donkey kong"];
+// array of possbile words to guess (classic games / characters)
+var words = ["castlevania", "mario", "megaman", "sonic", "tetris"];
 
 // store input key from users keyboard
 var userInputKey;
@@ -11,7 +11,7 @@ var inputKeyHistory;
 var indexOfLetter;
 
 //random number generator to get the word from the array
-var getWord = Math.floor(Math.random() * 4);
+var getWord = Math.floor(Math.random() * 5);
 
 // get the word from the array the user has to guess
 var guessWord = words[getWord];
