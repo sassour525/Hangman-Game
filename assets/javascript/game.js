@@ -28,7 +28,7 @@ console.log(wins)
 var currentWord = words[getWord];
 
 // array to hold user input guesses to build the full "getword"
-var wordGuess = [];
+var wordGuess = new Array(currentWord.length);
 
 // output random chosen word
 console.log(currentWord);
@@ -37,10 +37,34 @@ console.log(currentWord);
 // 	wordGuess[i] = wordGuess.fill("_");
 // }
 
+// fill array with underscores to show in current word section
+for(var i = 0; i < wordGuess.length; i++){
+	
+	wordGuess[i] = "_ ";
+}
+
+// function to print _ in guess area
+function printGuessWord(){
+	for (var i = 0; i < wordGuess.length; i++){
+		var guess = document.getElementById("guess");
+		var guessText = document.createTextNode(wordGuess[i]);
+		guess.appendChild(guessText);
+	}
+}
+
+// function used to call printGuessWord
+function init(){
+	printGuessWord();
+}
+
 console.log(wordGuess);
+
+// when page loads show _ in guess area
+window.onload = init;
 
 // get user input from keyboard - store in a var - user another var to keep track of previous input
 document.onkeyup = function(event) {
+
 	userInputKey = event.key;
 	console.log(userInputKey);
 
@@ -73,7 +97,7 @@ document.onkeyup = function(event) {
 	}
 
 
-	var current = document.getElementById("current-word");
+	var current = document.getElementById("guess");
 	var myGuess = wordGuess.join("");
 	current.innerHTML = myGuess;
 
