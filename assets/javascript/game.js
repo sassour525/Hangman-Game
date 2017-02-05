@@ -11,7 +11,7 @@ var inputKeyHistory = "";
 var remainingGuesses = 6;
 
 //hold the value of how many word guesses they got right
-var wins = 0;
+var wins = sessionStorage.getItem('wins');
 
 //get the index of the letter input within the word
 var indexOfLetter;
@@ -20,14 +20,24 @@ var lastIndexOfLetter;
 //random number generator to get the word from the array
 var getWord = Math.floor(Math.random() * 5);
 
-// array to hold user input guesses to build the full "getword"
-var wordGuess = [];
+// var data = 
+console.log(wins)
+
 
 // get the word from the array the user has to guess
 var currentWord = words[getWord];
 
+// array to hold user input guesses to build the full "getword"
+var wordGuess = [];
+
 // output random chosen word
 console.log(currentWord);
+
+// for(var i = 0; i != currentWord.length; i++){
+// 	wordGuess[i] = wordGuess.fill("_");
+// }
+
+console.log(wordGuess);
 
 // get user input from keyboard - store in a var - user another var to keep track of previous input
 document.onkeyup = function(event) {
@@ -51,18 +61,44 @@ document.onkeyup = function(event) {
 
 		console.log(wordGuess);
 	} else {
-		//if the letter is not in the word remove 1 from remaining guesses
+		//if the letter is not in the word remove 1 from remaining guesse
+
 		remainingGuesses--;
 		console.log(remainingGuesses);
+
+		if(remainingGuesses === 0) {
+			alert("Game Over!");
+			location.reload();
+		}
 	}
 
-	var guess = document.getElementById("words");
+
+	var current = document.getElementById("current-word");
 	var myGuess = wordGuess.join("");
-	guess.innerHTML = myGuess;
+	current.innerHTML = myGuess;
+
+	var guess = document.getElementById("guessed-letters");
+	guess.innerHTML = inputKeyHistory;
+
+	var remaining = document.getElementById("remaining-guesses");
+	remaining.innerHTML = remainingGuesses;
+
+	var it = document.getElementById("display-wins");
+	it.innerHTML = wins;
+
+	// if the word chosen matches the user guess input they win
+	if(myGuess == currentWord){
+		alert("You Win!");
+		wins++;
+		// console.log(wins);
+		sessionStorage.setItem('wins', wins);
+		location.reload();
+	}
 
 
 } //End Function onkeyup
 
+	
 
 		//loops thorough and finds all occurances of that letter and pushes to array (may need to set this as function and return array)
 		// var wordGuess = [];
