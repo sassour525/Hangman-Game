@@ -4,7 +4,7 @@ body, html {
 	background-repeat: repeat-y;
 }
 
-.gameContent {
+.center-content {
 	margin-top: 250px;
 	color: black;
 	text-align: center;
@@ -15,4 +15,8 @@ body, html {
     /*z-index: 1;*/
     width: 100%;
     height: 100%;
+}
+
+#reset-button {
+	width: 150px;
 }

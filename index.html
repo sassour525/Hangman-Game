@@ -19,25 +19,31 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3"></div>
-			<div class="col-md-6 gameContent">
-				<h1>Play Hangman!</h1>
-				<h2>Press any Key to Play!</h2>
-				
-				<!-- display the number of wins -->
-				<h3>Wins</h3>
-				<h3 id="display-wins"></h3>
+			<div class="col-md-6 center-content">
+				<div class="row game-content">
+					<h1>Play Hangman!</h1>
+					<h2>Press any Key to Play!</h2>
+					
+					<!-- display the number of wins -->
+					<h3>Wins</h3>
+					<h3 id="display-wins"></h3>
 
-				<!-- hold the _ values showing the number of "letters" in the current word -->
-				<h3>Current Word</h3>
-				<h3 id="guess"></h3>
+					<!-- hold the _ values showing the number of "letters" in the current word -->
+					<h3>Current Word</h3>
+					<h3 id="guess"></h3>
 
-				<!-- number of guesses remaining decreasing if they chose letters outside the current word -->
-				<h3>Number of Guesses Remaining</h3>
-				<h3 id="remaining-guesses"></h3>
+					<!-- number of guesses remaining decreasing if they chose letters outside the current word -->
+					<h3>Number of Guesses Remaining</h3>
+					<h3 id="remaining-guesses"></h3>
 
-				<!-- running list of letters guessed during the game -->
-				<h3>Letters Already Guessed</h3>
-				<h3 id="guessed-letters"></h3>
+					<!-- running list of letters guessed during the game -->
+					<h3>Letters Already Guessed</h3>
+					<h3 id="guessed-letters"></h3>
+				</div>
+				<br><br><br><br><br><br>
+				<div class="row bottom-button">
+					<input class="btn btn-primary" id="reset-button" type="reset" value="Reset">
+				</div>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
