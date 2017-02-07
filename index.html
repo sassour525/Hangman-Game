@@ -2,31 +2,46 @@
 <html>
 <head>
 	<title>Hangman!</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script type="text/javascript" src="assets/javascript/game.js"></script>
 </head>
 <body>
 
-	<h1>Play Hangman!</h1>
-	<h2>Press any Key to Play!</h2>
+	<div>
+		<img class="background" src="assets/images/gb-background.jpg">
+	</div>
 	
-	<!-- display the number of wins -->
-	<h3>Wins</h3>
-	<h3 id="display-wins"></h3>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6 gameContent">
+				<h1>Play Hangman!</h1>
+				<h2>Press any Key to Play!</h2>
+				
+				<!-- display the number of wins -->
+				<h3>Wins</h3>
+				<h3 id="display-wins"></h3>
 
-	<!-- hold the _ values showing the number of "letters" in the current word -->
-	<h3>Current Word</h3>
-	<h3 id="current-word"></h3>
-	<h3 id="guess"></h3>
+				<!-- hold the _ values showing the number of "letters" in the current word -->
+				<h3>Current Word</h3>
+				<h3 id="guess"></h3>
 
-	<!-- number of guesses remaining decreasing if they chose letters outside the current word -->
-	<h3>Number of Guesses Remaining</h3>
-	<h3 id="remaining-guesses"></h3>
+				<!-- number of guesses remaining decreasing if they chose letters outside the current word -->
+				<h3>Number of Guesses Remaining</h3>
+				<h3 id="remaining-guesses"></h3>
 
-	<!-- running list of letters guessed during the game -->
-	<h3>Letters Already Guessed</h3>
-
-	
-	<h3 id="guessed-letters"></h3>
+				<!-- running list of letters guessed during the game -->
+				<h3>Letters Already Guessed</h3>
+				<h3 id="guessed-letters"></h3>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	</div>
 
 </body>
 </html>

@@ -1,147 +1,66 @@
-// array of possbile words to guess (classic games / characters)
-var words = ["castlevania", "mario", "megaman", "sonic", "tetris"];
+//variable declaration
+var words;
+var inputKeyHistory;
+var wordGuess;
+var remainingGuesses;
+var wins;
+var getWord;
+var currentWord;
+var invalidKeys;
 
-// store input key from users keyboard
-var userInputKey;
+function init() {
+	words = ["castlevania", "mario", "megaman", "sonic", "tetris"];
+	inputKeyHistory = [];
+	wordGuess = [];
+	remainingGuesses = 10;
+	wins = sessionStorage.getItem('wins') || 0;
+	getWord = Math.floor(Math.random() * words.length);
+	currentWord = words[getWord];
+	invalidKeys = ["Control", "Alt", "Meta", "Shift"];
 
-// store past input key values
-var inputKeyHistory = "";
-
-//value used to keep track of remaining guess on the current word
-var remainingGuesses = 6;
-
-//hold the value of how many word guesses they got right
-var wins = sessionStorage.getItem('wins');
-
-//get the index of the letter input within the word
-var indexOfLetter;
-var lastIndexOfLetter;
-
-//random number generator to get the word from the array
-var getWord = Math.floor(Math.random() * 5);
-
-// var data = 
-console.log(wins)
-
-
-// get the word from the array the user has to guess
-var currentWord = words[getWord];
-
-// array to hold user input guesses to build the full "getword"
-var wordGuess = new Array(currentWord.length);
-
-// output random chosen word
-console.log(currentWord);
-
-// for(var i = 0; i != currentWord.length; i++){
-// 	wordGuess[i] = wordGuess.fill("_");
-// }
-
-// fill array with underscores to show in current word section
-for(var i = 0; i < wordGuess.length; i++){
-	
-	wordGuess[i] = "_ ";
-}
-
-// function to print _ in guess area
-function printGuessWord(){
-	for (var i = 0; i < wordGuess.length; i++){
-		var guess = document.getElementById("guess");
-		var guessText = document.createTextNode(wordGuess[i]);
-		guess.appendChild(guessText);
+	for (var i = 0; i < currentWord.length; i++) {
+		wordGuess[i] = "_ ";
 	}
-}
 
-// function used to call printGuessWord
-function init(){
-	printGuessWord();
-}
+	updateDisplay();
+} //END init()
 
-console.log(wordGuess);
+function updateDisplay() {
+	document.getElementById("display-wins").innerHTML = wins;
+	document.getElementById("guess").innerHTML = wordGuess.join(" ");
+	document.getElementById("remaining-guesses").innerHTML = remainingGuesses;
+	document.getElementById("guessed-letters").innerHTML = inputKeyHistory.join(" ").toUpperCase();
+}//END updateDisplay()
 
-// when page loads show _ in guess area
-window.onload = init;
+function validateUserInput(input) {
+	if (invalidKeys.indexOf(input) <= -1) {
+		if (inputKeyHistory.indexOf(input) <= -1) {
+			inputKeyHistory.push(input);
+			if (currentWord.includes(input)) {
+				for (var i = 0; i < currentWord.length; i++) {
+					if (input == currentWord[i]) {
+						wordGuess[i] = currentWord[i];
+					}	
+				}	
+			} else {
+				remainingGuesses--;
+			}
 
-// get user input from keyboard - store in a var - user another var to keep track of previous input
-document.onkeyup = function(event) {
+			updateDisplay();
 
-	userInputKey = event.key;
-	console.log(userInputKey);
+			if (remainingGuesses <= 0) {
+				alert("Game Over");
+				location.reload();
+			}
 
-	inputKeyHistory = (inputKeyHistory + " " + userInputKey).toUpperCase();
-	// inputKeyHistory = inputKeyHistory.toUpperCase();
-	console.log(inputKeyHistory);
-
-	// if the letter is present in the word - give me the index of that letter
-	if(currentWord.includes(userInputKey)) {
-
-		indexOfLetter = currentWord.indexOf(userInputKey);
-		lastIndexOfLetter = currentWord.lastIndexOf(userInputKey);
-
-		console.log(indexOfLetter);
-
-		wordGuess[indexOfLetter] = userInputKey;
-		wordGuess[lastIndexOfLetter] = userInputKey;
-
-		console.log(wordGuess);
-	} else {
-		//if the letter is not in the word remove 1 from remaining guesse
-
-		remainingGuesses--;
-		console.log(remainingGuesses);
-
-		if(remainingGuesses === 0) {
-			alert("Game Over!");
-			location.reload();
+		} else {
+			alert("You have already guessed that letter.");
 		}
 	}
+}//END validateUserInput
 
+document.onkeyup = function(event) {
+	validateUserInput(event.key);
+}//END onkeyup
 
-	var current = document.getElementById("guess");
-	var myGuess = wordGuess.join("");
-	current.innerHTML = myGuess;
-
-	var guess = document.getElementById("guessed-letters");
-	guess.innerHTML = inputKeyHistory;
-
-	var remaining = document.getElementById("remaining-guesses");
-	remaining.innerHTML = remainingGuesses;
-
-	var it = document.getElementById("display-wins");
-	it.innerHTML = wins;
-
-	// if the word chosen matches the user guess input they win
-	if(myGuess == currentWord){
-		alert("You Win!");
-		wins++;
-		// console.log(wins);
-		sessionStorage.setItem('wins', wins);
-		location.reload();
-	}
-
-
-} //End Function onkeyup
-
-	
-
-		//loops thorough and finds all occurances of that letter and pushes to array (may need to set this as function and return array)
-		// var wordGuess = [];
-		// for(var i=0; i<currentWord.length;i++) {
-		//     if (currentWord[i] == userInputKey) {
-		//     	wordGuess.push(i);
-		//     }
-		// }
-
-
-		// var finalOutput = [];
-		// for(var i=0; i<wordGuess.length; i++){
-		// 	g = wordGuess[i];
-		// 	finalOutput[g] = userInputKey;
-		// }
-
-		// console.log(wordGuess);
-		// console.log(g);
-		// console.log(finalOutput);
-
-
-
+window.onload = init;
