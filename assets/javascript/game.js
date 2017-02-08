@@ -7,6 +7,8 @@ var wins; //hold the value of how many word guesses they got right
 var getWord; //random number generator to get the word from the array
 var currentWord; //get the word from the array the user has to guess
 var invalidKeys; //array of invalid keys for input
+var modal; //hold modal html element
+var span; //hold span element in modal to close modal
 
 function init() {
 	//initialize the game variables
@@ -17,7 +19,7 @@ function init() {
 	wins = sessionStorage.getItem('wins') || 0;
 	getWord = Math.floor(Math.random() * words.length);
 	currentWord = words[getWord];
-	invalidKeys = ["Control", "Alt", "Meta", "Shift"];
+	invalidKeys = ["Control", "Alt", "Meta", "Shift", "Enter"];
 
 	//fill array with underscores to show in current word section
 	for (var i = 0; i < currentWord.length; i++) {
@@ -57,16 +59,14 @@ function validateUserInput(input) {
 
 			if (remainingGuesses <= 0) {
 				//alerts user if they run out of guesses and reload the page
-				alert("Game Over");
-				location.reload();
+				displayModal("Game Over - you have run out of guesses."); //call displayModal to pass the message we want in the modal popup
 			}
 
 			if (wordGuess.join("") == currentWord) {
 				//if the wordGuess array (converted to string) equals the current word alert user they win, increment wins var, store the wins var, reload page
-				alert("You Win!");
+				displayModal("You Win!"); //call displayModal to pass the message we want in the modal popup
 				wins++
-				sessionStorage.setItem('wins', wins);
-				location.reload();
+				sessionStorage.setItem('wins', wins);			
 			}
 
 		} else {
@@ -81,6 +81,18 @@ function resetGame() {
 	sessionStorage.clear();
 	init();
 }//END resetGame - this will clear wins session variable and initialize variables to default
+
+function displayModal(msg) {
+	//used to get modal and display modal with specific message passed in
+	modal = document.getElementById('myModal');
+	span = document.getElementsByClassName("close")[0];
+	modal.style.display = "block";
+	document.getElementById("error").innerHTML = msg;
+	span.onclick = function() {
+		modal.style.display = "none";
+		init();
+	}
+}
 
 document.onkeyup = function(event) {
 	//determine if the users input is valid

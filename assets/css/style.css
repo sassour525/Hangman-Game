@@ -4,19 +4,65 @@ body, html {
 	background-repeat: repeat-y;
 }
 
+/*style for center "game" text*/
 .center-content {
-	margin-top: 250px;
+	margin-top: 70px;
 	color: black;
 	text-align: center;
+
 }
 
+/*background styles for image*/
 .background {
     position: absolute;
-    /*z-index: 1;*/
     width: 100%;
     height: 100%;
 }
 
+/*set reset-button location and size*/
 #reset-button {
 	width: 150px;
+	margin-bottom: 40px;
+	position: relative;
+	background-color: #5e6aa8;
 }
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    position: fixed;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    /*border: 1px solid #888;*/
+    width: 80%;
+    border: solid thick #5e6aa8;
+    text-align: center;
+}
+
+/* The Close Button */
+.close {
+    color: #5e6aa8;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    opacity: 100;
+}
+
+/*overwrite bootstrap button color*/
+.btn-primary {
+    background-image: linear-gradient(to bottom,#5e6aa8 0,#5e6aa8 100%);
+    border-color: #5e6aa8;
+}
+

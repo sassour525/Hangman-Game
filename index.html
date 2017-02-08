@@ -20,9 +20,12 @@
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6 center-content">
+				<div class="row bottom-button">
+					<input class="btn btn-primary" id="reset-button" type="reset" value="Reset">
+				</div>
 				<div class="row game-content">
-					<h1>Play Hangman!</h1>
-					<h2>Press any Key to Play!</h2>
+					<h2>Play Hangman!</h2>
+					<h3>Press any Key to Play!</h3>
 					
 					<!-- display the number of wins -->
 					<h3>Wins</h3>
@@ -40,12 +43,15 @@
 					<h3>Letters Already Guessed</h3>
 					<h3 id="guessed-letters"></h3>
 				</div>
-				<br><br><br><br><br><br>
-				<div class="row bottom-button">
-					<input class="btn btn-primary" id="reset-button" type="reset" value="Reset">
-				</div>
 			</div>
 			<div class="col-md-3"></div>
+		</div>
+		<div id="myModal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h3 id="error"></h3>
+			</div>
 		</div>
 	</div>
 
