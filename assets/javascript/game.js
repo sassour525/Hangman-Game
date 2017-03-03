@@ -102,6 +102,9 @@ function displayModal(msg) {
 }
 
 document.onkeyup = function(event) {
+	// this is called a return early pattern and will exit this
+	// function if the game is already over.
+	if(remainingGuesses <= 0) return;
 	//determine if the users input is valid
 	validateUserInput(event.key);
 }//END onkeyup

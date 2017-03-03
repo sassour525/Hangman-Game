@@ -63,7 +63,7 @@ body, html {
 /*overwrite bootstrap button color*/
 .btn-primary {
     background-image: linear-gradient(to bottom,#5e6aa8 0,#5e6aa8 100%);
-    border-color: #5e6aa8;
+    border-color: #8c1f1f
 }
 
 canvas {
